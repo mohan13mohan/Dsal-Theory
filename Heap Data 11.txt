@@ -1,0 +1,106 @@
+Finding Maximum and Minimum Marks Using Heap Data Structure
+1. Title:
+Finding Maximum and Minimum Marks from Students Using Heap Data Structure
+
+2. Objectives:
+To implement the heap data structure for efficiently finding the maximum and minimum marks obtained by students.
+
+To analyze the time complexity of finding the maximum and minimum marks using a heap.
+
+To understand how heaps can be applied in scenarios requiring efficient retrieval of extreme values (max and min).
+
+3. Theory
+📘 Heap Data Structure:
+A heap is a special tree-based data structure that satisfies the heap property:
+
+Max-Heap: In a max-heap, for every node i, the value of i is greater than or equal to the values of its children. This ensures that the maximum element is at the root.
+
+Min-Heap: In a min-heap, for every node i, the value of i is less than or equal to the values of its children. This ensures that the minimum element is at the root.
+
+📘 Operations on Heaps:
+Insertion: Adds a new element to the heap while maintaining the heap property. It is done in O(log n) time.
+
+Deletion: Removes the root element (either maximum in max-heap or minimum in min-heap) and rebalances the heap. This operation is also O(log n).
+
+Peek: Accessing the root of the heap (maximum or minimum) is O(1) because the root always contains the extreme value.
+
+In this practical, we will use a max-heap to efficiently find the maximum mark and a min-heap to find the minimum mark from a list of student marks.
+
+4. Algorithm
+To find the maximum and minimum marks using a heap, the algorithm will work as follows:
+
+Build the Max-Heap:
+
+Insert all the marks into a max-heap. The root of the max-heap will give the maximum mark.
+
+Build the Min-Heap:
+
+Insert all the marks into a min-heap. The root of the min-heap will give the minimum mark.
+
+Retrieve the Maximum and Minimum Marks:
+
+The maximum mark can be accessed in constant time from the root of the max-heap.
+
+The minimum mark can be accessed in constant time from the root of the min-heap.
+
+5. Example Data
+Consider a set of student marks:
+
+Student	Marks
+Student 1	85
+Student 2	92
+Student 3	78
+Student 4	95
+Student 5	88
+
+Using a max-heap and a min-heap, we can efficiently find the maximum and minimum marks.
+
+6. Operations Using Heap
+Max-Heap Construction:
+
+Insert the student marks into a max-heap.
+
+The root of the max-heap will give the maximum mark.
+
+Min-Heap Construction:
+
+Insert the student marks into a min-heap.
+
+The root of the min-heap will give the minimum mark.
+
+Finding Maximum and Minimum Marks:
+
+Maximum Mark: The root of the max-heap contains the maximum mark.
+
+Minimum Mark: The root of the min-heap contains the minimum mark.
+
+7. Time Complexity Analysis
+Insertion into a Heap: The time complexity for inserting an element into the heap is O(log n). For n elements, inserting all elements into the heap will take O(n log n).
+
+Accessing the Maximum/Minimum: Accessing the maximum or minimum element is done in O(1) time because the extreme value is always at the root of the heap.
+
+Overall Complexity:
+
+Building the heap (insertion of all elements) takes O(n log n).
+
+Finding the maximum or minimum takes O(1).
+
+Thus, the time complexity for finding the maximum and minimum marks using heaps is O(n log n) for construction and O(1) for retrieval.
+
+8. Conclusion
+The heap data structure is an efficient way to manage and retrieve the maximum and minimum values. It allows:
+
+Efficient retrieval of the maximum or minimum value in O(1) time.
+
+Efficient insertion and deletion operations in O(log n) time, which makes it suitable for dynamic data sets.
+
+In this practical, we used both a max-heap and a min-heap to handle the operations of retrieving the highest and lowest marks from a set of student marks.
+
+9. Justification of Data Structures
+Data Structure	Purpose
+Max-Heap	Efficiently stores and retrieves the maximum value (maximum marks).
+Min-Heap	Efficiently stores and retrieves the minimum value (minimum marks).
+Heap Operations	Provides efficient O(log n) time complexity for insertion and deletion.
+
+The heap is ideal for scenarios where finding the extreme values (maximum or minimum) is frequently required. The logarithmic insertion and constant-time retrieval of extreme values make heaps highly efficient for such tasks.
+

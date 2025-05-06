@@ -1,0 +1,187 @@
+ Title
+Graph Representation and Traversal: DFS and BFS Using the Map of the College
+
+🔹 1. Objectives
+To represent a real-world problem (college map) as a graph using adjacency matrix and adjacency list.
+
+To perform DFS (Depth First Search) using both adjacency matrix and list.
+
+To perform BFS (Breadth First Search) using adjacency list.
+
+To understand the practical difference between DFS and BFS traversals.
+
+🔹 2. Theory
+Graph Basics:
+A graph is a collection of nodes (called vertices) and edges (connections between nodes). There are two main types:
+
+Directed Graph (Digraph): Edges have direction.
+
+Undirected Graph: Edges are bidirectional.
+
+Graphs can be represented as:
+
+Adjacency Matrix: A 2D array where matrix[i][j] = 1 if an edge exists between vertex i and j.
+
+Adjacency List: Each vertex stores a list of connected vertices.
+
+DFS (Depth First Search):
+Uses stack (implicitly via recursion).
+
+Explores as far as possible along each branch before backtracking.
+
+BFS (Breadth First Search):
+Uses a queue.
+
+Explores all neighbors at the present depth before going deeper.
+
+🔹 3. Map of the College as a Graph
+We assume the following landmarks as nodes:
+
+A: Main Gate
+
+B: Library
+
+C: Cafeteria
+
+D: Admin Block
+
+E: Hostel
+
+F: Sports Complex
+
+Edges (Connections between landmarks):
+A - B, A - C
+
+B - D
+
+C - E 
+
+D - F
+
+E - F
+
+🔹 4. Graph Representations
+a) Adjacency Matrix
+css
+Copy
+Edit
+    A B C D E F
+A [ 0 1 1 0 0 0 ]
+B [ 1 0 0 1 0 0 ]
+C [ 1 0 0 0 1 0 ]
+D [ 0 1 0 0 0 1 ]
+E [ 0 0 1 0 0 1 ]
+F [ 0 0 0 1 1 0 ]
+b) Adjacency List
+python
+Copy
+Edit
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'E'],
+    'D': ['B', 'F'],
+    'E': ['C', 'F'],
+    'F': ['D', 'E']
+}
+🔹 5. Algorithm
+DFS using Adjacency Matrix (Recursive)
+Initialize visited[] = False for all nodes.
+
+Call DFS on starting node.
+
+Mark the node visited.
+
+Recursively visit all adjacent unvisited nodes.
+
+BFS using Adjacency List
+Initialize an empty queue and visited set.
+
+Enqueue the starting node and mark visited.
+
+While queue is not empty:
+
+Dequeue front node.
+
+Visit all its unvisited neighbors, enqueue them.
+
+🔹 6. Code Implementation
+✅ DFS using Adjacency Matrix
+python
+Copy
+Edit
+nodes = ['A', 'B', 'C', 'D', 'E', 'F']
+adj_matrix = [
+    [0, 1, 1, 0, 0, 0],  # A
+    [1, 0, 0, 1, 0, 0],  # B
+    [1, 0, 0, 0, 1, 0],  # C
+    [0, 1, 0, 0, 0, 1],  # D
+    [0, 0, 1, 0, 0, 1],  # E
+    [0, 0, 0, 1, 1, 0]   # F
+]
+
+def dfs_matrix(graph, start, visited, nodes):
+    index = nodes.index(start)
+    visited[index] = True
+    print(start, end=' ')
+    for i in range(len(graph)):
+        if graph[index][i] == 1 and not visited[i]:
+            dfs_matrix(graph, nodes[i], visited, nodes)
+
+visited = [False] * len(nodes)
+print("DFS Traversal (Adjacency Matrix):")
+dfs_matrix(adj_matrix, 'A', visited, nodes)
+✅ BFS using Adjacency List
+python
+Copy
+Edit
+from collections import deque
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'E'],
+    'D': ['B', 'F'],
+    'E': ['C', 'F'],
+    'F': ['D', 'E']
+}
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    
+    print("BFS Traversal:")
+    while queue:
+        vertex = queue.popleft()
+        if vertex not in visited:
+            print(vertex, end=' ')
+            visited.add(vertex)
+            for neighbor in graph[vertex]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+
+bfs(graph, 'A')
+🔹 7. Input / Output
+Input: Starting node = A
+DFS Output:
+
+mathematica
+Copy
+Edit
+A B D F E C
+BFS Output:
+
+mathematica
+Copy
+Edit
+A B C D E F
+🔹 8. Conclusion
+This practical demonstrates how to convert a real-world environment into a graph structure and use DFS and BFS to traverse it:
+
+DFS goes deep into one path before backtracking.
+
+BFS explores level by level.
+
+Both algorithms are useful in navigation, social networking, and AI.
+
+Understanding these fundamental traversal strategies is essential in solving many real-world problems related to routing, mapping, and searching in graphs.

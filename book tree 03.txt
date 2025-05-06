@@ -1,0 +1,148 @@
+ Book Structure Tree – DSAL Practical
+✅ 1. Objectives
+The objectives of this practical are:
+
+To represent the hierarchical structure of a book using a tree data structure.
+
+To construct a tree where:
+
+The root represents the book,
+
+Each child node represents a chapter,
+
+Chapters contain sections, and
+
+Sections contain subsections.
+
+To traverse and print the tree in a structured manner.
+
+To analyze the time and space complexity of the implemented method.
+
+📚 2. Theory
+A tree is a non-linear hierarchical data structure consisting of nodes connected by edges. Each node contains data and may point to multiple child nodes. A tree has the following properties:
+
+One node is designated as the root.
+
+Every other node has exactly one parent.
+
+Nodes with no children are called leaves.
+
+📖 Book Representation as Tree
+Root Node: Book title
+
+Child Nodes of Root: Chapters
+
+Child Nodes of Chapters: Sections
+
+Child Nodes of Sections: Subsections
+
+This structure allows us to model the logical hierarchy of a book effectively.
+
+🧠 Why Use Trees?
+Trees naturally represent hierarchical relationships.
+
+Easy to traverse using recursive or iterative methods.
+
+Helps maintain order while offering flexibility in structure and expansion.
+
+🧮 3. Algorithm
+We use a multi-way tree (a general tree) where each node can have zero or more children.
+
+📌 Data Structure:
+python
+Copy
+Edit
+class TreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.children = []
+📌 Algorithm Steps:
+Create Root Node
+
+Input the book title and create the root of the tree.
+
+Insert Chapters
+
+Ask the user for the number of chapters.
+
+For each chapter:
+
+Create a child node under the root.
+
+Insert Sections
+
+For each chapter:
+
+Input number of sections.
+
+Add each section as a child node of that chapter.
+
+Insert Subsections
+
+For each section:
+
+Input number of subsections.
+
+Add each as a child of the respective section node.
+
+Tree Traversal
+
+Use pre-order traversal (visit node, then children) to print the tree.
+
+⏱ Time Complexity:
+O(n) where n is the total number of nodes (book + chapters + sections + subsections). Each node is visited once.
+
+💾 Space Complexity:
+O(n) space is required to store all nodes and their references.
+
+🔢 4. Input / Output
+📥 Sample Input:
+plaintext
+Copy
+Edit
+Book Title: Data Structures
+Number of Chapters: 2
+
+Chapter 1: Arrays
+  Sections: 2
+    Section 1: Introduction
+      Subsections: 2
+        Subsection 1: Definition
+        Subsection 2: Types
+    Section 2: Operations
+      Subsections: 1
+        Subsection 1: Insertion
+
+Chapter 2: Trees
+  Sections: 1
+    Section 1: Binary Trees
+      Subsections: 2
+        Subsection 1: Traversals
+        Subsection 2: Applications
+📤 Sample Output:
+yaml
+Copy
+Edit
+Book: Data Structures
+ ├── Chapter: Arrays
+ │   ├── Section: Introduction
+ │   │   ├── Subsection: Definition
+ │   │   └── Subsection: Types
+ │   └── Section: Operations
+ │       └── Subsection: Insertion
+ └── Chapter: Trees
+     └── Section: Binary Trees
+         ├── Subsection: Traversals
+         └── Subsection: Applications
+This output shows the hierarchy in a visually structured format.
+
+✅ 5. Conclusion
+This experiment successfully demonstrates the use of a tree data structure to represent a hierarchical system — a book with chapters, sections, and subsections.
+
+Trees are ideal for such hierarchical models.
+
+Using recursion or iterative traversal, we can efficiently navigate and print the structure.
+
+Time and space complexity are both linear (O(n)), making the approach efficient and scalable.
+
+Such models are widely used in filesystems, XML parsing, organization charts, and table of contents generation, making this a valuable concept in both theory and real-world applications.

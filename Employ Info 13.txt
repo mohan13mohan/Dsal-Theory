@@ -1,0 +1,107 @@
+Employee Information Management Using Indexed Sequential File
+1. Title:
+Managing Employee Information Using Indexed Sequential File Organization
+
+2. Objectives:
+To implement an indexed sequential file for managing employee information (Employee ID, Name, Designation, Salary).
+
+To provide functionalities for:
+
+Adding new employee records.
+
+Deleting existing employee records.
+
+Displaying a particular employee’s details based on Employee ID.
+
+Displaying an appropriate message if the employee record is not found.
+
+To understand how indexed sequential file organization optimizes data access and management.
+
+3. Theory
+📘 Indexed Sequential File:
+An Indexed Sequential File combines features of both sequential and direct access. The data is stored in a sequential manner, and an index is maintained that maps key fields (like Employee ID) to their positions in the file.
+
+Index Table: A separate structure that stores the mapping between keys (Employee IDs) and their positions in the file.
+
+This enables fast searching (using the index) while retaining the ability to traverse the data sequentially when needed.
+
+Suitable for large datasets where frequent insertions, deletions, and searches occur.
+
+4. Data Fields
+Each employee record contains:
+
+Employee ID (Unique)
+
+Name
+
+Designation
+
+Salary
+
+5. Algorithm
+🔹 Add a New Employee:
+Open the file in append mode.
+
+Insert the new record in a sequential manner (sorted by Employee ID).
+
+Update the index table with the new ID and its position in the file.
+
+🔹 Delete an Employee Record:
+Use the index to search for the Employee ID.
+
+If found, remove the record from the file and update the index.
+
+If not found, display a message: "Employee record not found."
+
+🔹 Display an Employee Record:
+Use the index to quickly find the position of the Employee ID.
+
+If found, retrieve and display the employee's details.
+
+If not found, show an error message.
+
+🔹 Display Record Not Found:
+When the requested Employee ID is not in the index, display:
+
+"Employee record not found."
+
+6. Example Data
+Employee ID	Name	Designation	Salary
+101	Alice Brown	HR Manager	60000
+102	Bob Smith	Developer	55000
+103	Carol Davis	Analyst	50000
+
+Index Table (simplified view):
+
+Employee ID	File Position
+101	0
+102	1
+103	2
+
+7. Operations Example
+Add: Insert new employee with ID 104, name John Stone, designation Designer, salary 52000. Update index accordingly.
+
+Delete: Remove employee with ID 102. Remove entry from index and file.
+
+Search: Enter ID 103. Index provides location. Display record.
+
+Search (Not Found): Enter ID 110. Not in index. Output: "Employee record not found."
+
+8. Time Complexity
+Operation	Time Complexity	Explanation
+Add Record	O(log n) for index update + O(n) for data rewrite	Sorted insertion requires file scan.
+Delete Record	O(log n) for index + O(n) for rewrite	Index helps locate; rest is linear.
+Search Record	O(log n)	Binary search on index.
+Sequential Traversal	O(n)	Reading file linearly.
+
+Using an index significantly improves the search performance over pure sequential file systems.
+
+9. Conclusion
+This practical demonstrates how an Indexed Sequential File helps manage large datasets efficiently by combining the advantages of both sequential and direct access. It supports:
+
+Efficient search through indexing,
+
+Sequential access for complete traversal,
+
+Efficient insertion and deletion compared to purely sequential files.
+

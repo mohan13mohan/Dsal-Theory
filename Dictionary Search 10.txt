@@ -1,0 +1,105 @@
+Dictionary using Height-Balanced Tree (AVL Tree)
+1. Title:
+Dictionary Implementation with AVL Tree for Efficient Keyword Search, Insertion, and Deletion
+
+2. Objectives:
+To implement a dictionary that stores keywords and their meanings using a height-balanced AVL tree.
+
+To provide facilities for:
+
+Adding new keywords.
+
+Deleting keywords.
+
+Updating keyword meanings.
+
+To display the dictionary sorted in ascending or descending order.
+
+To calculate the maximum number of comparisons needed to search for a keyword.
+
+To analyze the complexity of keyword search.
+
+3. Theory
+📘 AVL Tree:
+An AVL Tree (Adelson-Velsky and Landis Tree) is a self-balancing binary search tree. It ensures that the height difference (balance factor) between the left and right subtrees of any node is at most 1. This property guarantees that the tree remains balanced, providing efficient search, insertion, and deletion operations.
+
+Balance Factor: The difference between the height of the left and right subtrees. If the balance factor is not within the range {-1, 0, 1}, the tree is rebalanced using rotations.
+
+Rotations: Used to maintain balance. There are four types of rotations: Left-Left (LL), Right-Right (RR), Left-Right (LR), and Right-Left (RL).
+
+📘 Dictionary Operations:
+Insertion: Add a new keyword and its meaning.
+
+Deletion: Remove a keyword and its meaning.
+
+Update: Modify the meaning of an existing keyword.
+
+Display: Show the entire dictionary in sorted order (ascending or descending).
+
+Search: Find a keyword and display its meaning.
+
+Maximum Comparisons: In an AVL tree, the maximum number of comparisons to find a keyword is equal to the height of the tree. Since the height of an AVL tree is O(log n), the worst-case time complexity for searching is O(log n).
+
+4. Algorithm
+To implement the dictionary functionality, we will:
+
+Insert a new keyword: Insert it into the AVL tree while ensuring the tree remains balanced.
+
+Delete a keyword: Delete the node from the tree and rebalance if necessary.
+
+Update a keyword's meaning: Perform a search to find the keyword and then update its associated meaning.
+
+Display sorted data: Perform an in-order traversal for ascending order and a reverse in-order traversal for descending order.
+
+Search for a keyword: Perform a standard binary search to find the node containing the keyword, and compare until you reach the node or determine that the keyword is not present.
+
+5. Example Data
+Assume we have a set of keywords and meanings:
+
+Keyword	Meaning
+apple	A fruit with red or green skin.
+banana	A long, curved fruit.
+grape	A small, round fruit used to make wine.
+orange	A round citrus fruit with a tough skin.
+
+6. Operations Using AVL Tree
+Insertion and Deletion
+When a keyword is inserted or deleted:
+
+The AVL tree will automatically rebalance to maintain the height balance condition, ensuring that the height of the tree remains O(log n).
+
+Searching for a Keyword
+In an AVL Tree, the search complexity is O(log n) because the height of the tree is logarithmic with respect to the number of nodes.
+
+Displaying the Dictionary
+In-order traversal will give the dictionary in ascending order.
+
+Reverse in-order traversal will give the dictionary in descending order.
+
+Maximum Comparisons
+The maximum number of comparisons required to find a keyword is the height of the tree, which is O(log n) for an AVL tree.
+
+7. Complexity Analysis
+Time Complexity:
+Insertion: O(log n) due to tree rebalancing.
+
+Deletion: O(log n) due to tree rebalancing.
+
+Update: O(log n) for finding the keyword, then update the meaning.
+
+Search: O(log n) as we perform binary search on the balanced AVL tree.
+
+Display: O(n) for in-order traversal to display all elements.
+
+Space Complexity:
+O(n) for storing the dictionary in the AVL tree.
+
+8. Conclusion
+The AVL tree provides an efficient way to implement a dictionary with fast search, insertion, deletion, and update operations. By keeping the tree balanced, it guarantees logarithmic time complexity for these operations, ensuring optimal performance even with a large number of entries.
+
+Insertion, deletion, update, and search operations all have a time complexity of O(log n).
+
+The dictionary can be displayed in ascending or descending order through in-order or reverse in-order traversal.
+
+The maximum comparisons required for any search operation is O(log n) due to the height of the AVL tree.
+

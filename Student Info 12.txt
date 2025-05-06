@@ -1,0 +1,139 @@
+Student Information Management Using Sequential Files
+1. Title:
+Managing Student Information Using Sequential Files
+
+2. Objectives:
+To implement a sequential file for managing student information (roll number, name, division, and address).
+
+To provide functionalities for:
+
+Adding new student information.
+
+Deleting student information.
+
+Displaying information of a particular student based on roll number.
+
+Displaying an appropriate message if the record does not exist.
+
+To understand how sequential files are used to maintain data in file systems.
+
+3. Theory
+📘 Sequential File:
+A sequential file is a type of file organization where data is stored in a linear sequence. In this method, data is written one after another in a predefined order. It is a simple approach for storing data and accessing it in sequence (either in ascending or descending order).
+
+Advantages: Simple to implement, good for small datasets or applications where data is mostly read sequentially.
+
+Disadvantages: Searching and updating records can be inefficient, especially when the file size grows large, as all records may need to be checked sequentially.
+
+📘 Student Record:
+Each student record will contain:
+
+Roll Number: A unique identifier for each student.
+
+Name: The student's full name.
+
+Division: The division or section the student belongs to.
+
+Address: The student's address.
+
+📘 Operations:
+Add a new student: New student records can be added to the file.
+
+Delete student information: This operation will remove a record of a student from the file.
+
+Display student information: Given a roll number, the system will search and display the corresponding student's details.
+
+Record not found: If the student's record is not found, an appropriate message will be displayed.
+
+4. Algorithm
+To manage the student records in a sequential file, we will follow the algorithm below:
+
+Adding a New Student:
+
+Open the file in append mode.
+
+Create a new record with the student's details.
+
+Write the record to the file.
+
+Deleting a Student Record:
+
+Open the file in read mode to search for the record.
+
+If the record is found, create a new file and copy all the records except the one to be deleted.
+
+Once the deletion is complete, delete the original file and rename the new file to the original file name.
+
+Displaying Student Information:
+
+Open the file in read mode.
+
+Search for the student record by roll number.
+
+If found, display the student details; otherwise, display an error message.
+
+Record Not Found:
+
+If the student’s roll number does not exist in the file, display a message indicating that the record is not found.
+
+5. Example Data
+Consider a set of student records:
+
+Roll No	Name	Division	Address
+101	John Doe	A	123 Street, NY
+102	Jane Smith	B	456 Road, LA
+103	Sam Wilson	A	789 Avenue, SF
+
+6. Operations Explanation
+Adding a New Student Record:
+
+When a new student is added, the system writes the student's details to the end of the file.
+
+Example: Adding a student with roll number 104, name Tom Harris, division C, and address 101 Park, Chicago.
+
+Deleting a Student Record:
+
+Deletion involves reading all records and writing the ones that don’t match the student to be deleted into a new file.
+
+Example: Deleting the record of the student with roll number 102.
+
+Displaying Information for a Student:
+
+The system searches through the file for the roll number.
+
+If found, it displays the student's details.
+
+Example: Searching for the student with roll number 101.
+
+Record Not Found:
+
+If the roll number is not found in the file, the system will notify the user with an appropriate message: "Student record not found."
+
+7. Time Complexity
+Adding a New Student: Appending a record at the end of the file takes O(1) time.
+
+Deleting a Student Record: Requires reading all records and writing back those that don’t need deletion, which takes O(n) time where n is the number of records in the file.
+
+Displaying a Student Record: Searching for a roll number involves reading each record one by one, so it takes O(n) time in the worst case.
+
+Record Not Found: Searching through all records will also take O(n) time in the worst case.
+
+8. Conclusion
+In this practical, we used a sequential file to manage student information. The operations provided include:
+
+Adding new records.
+
+Deleting existing records.
+
+Displaying specific student details.
+
+Handling scenarios where a student record does not exist.
+
+A sequential file is simple to implement, but it may not be the most efficient choice for large datasets. As the dataset grows, searching for a record or deleting it becomes slower, as the system must traverse the entire file sequentially. For larger systems, other data structures like indexed files or databases would be more suitable.
+
+9. Justification of Data Structure
+Data Structure	Purpose
+Sequential File	Stores student records in a simple, linear format.
+File Operations	Read, write, append, and delete operations on a file for managing student data.
+Linear Search	Used for searching student records in the file.
+

@@ -1,0 +1,133 @@
+Graph Representation of Flight Paths Between Cities
+🔹 Title:
+Graph Representation of Flights Between Cities and Connectivity Check
+
+🔹 1. Objectives
+To model flight paths between cities using graphs.
+
+To represent the graph using adjacency matrix and/or adjacency list.
+
+To include edge weights like time or fuel used.
+
+To determine whether the graph is connected (i.e., every city is reachable from any other).
+
+To justify the choice of graph storage representation.
+
+🔹 2. Theory
+📘 Graph Representation of Flight Paths:
+A graph is a collection of nodes (cities/airports) and edges (direct flights). Edges can be:
+
+Unweighted: only show the connection.
+
+Weighted: include travel time or fuel used.
+
+📘 Connectivity in Graphs:
+A graph is connected if there is a path from any node to any other node.
+To check connectivity:
+
+Perform a DFS or BFS from any node.
+
+If all nodes are visited, the graph is connected.
+
+📘 Storage Representations:
+Adjacency List: Efficient for sparse graphs (fewer flights).
+
+Adjacency Matrix: Efficient for dense graphs or when checking edge existence frequently.
+
+🔹 3. Assumptions and Graph Model
+✈️ Cities / Airports (Nodes):
+DEL – Delhi
+
+MUM – Mumbai
+
+BLR – Bengaluru
+
+HYD – Hyderabad
+
+KOL – Kolkata
+
+✈️ Flight Paths with Travel Time (Edges):
+DEL – MUM (2 hours)
+
+DEL – BLR (2.5 hours)
+
+MUM – HYD (1.5 hours)
+
+BLR – HYD (1 hour)
+
+HYD – KOL (2 hours)
+
+KOL – DEL (2.5 hours)
+
+🔹 4. Graph Representations
+✅ a) Adjacency List (Weighted) in Python
+python
+Copy
+Edit
+flight_graph = {
+    'DEL': [('MUM', 2), ('BLR', 2.5)],
+    'MUM': [('DEL', 2), ('HYD', 1.5)],
+    'BLR': [('DEL', 2.5), ('HYD', 1)],
+    'HYD': [('MUM', 1.5), ('BLR', 1), ('KOL', 2)],
+    'KOL': [('HYD', 2), ('DEL', 2.5)]
+}
+✅ b) Adjacency Matrix (Weighted)
+css
+Copy
+Edit
+      DEL  MUM  BLR  HYD  KOL
+DEL  [ 0   2    2.5   0    0  ]
+MUM  [ 2   0    0     1.5  0  ]
+BLR  [2.5  0    0     1    0  ]
+HYD  [ 0   1.5  1     0    2  ]
+KOL  [2.5  0    0     2    0  ]
+🔹 5. Algorithm: Connectivity Check using DFS
+python
+Copy
+Edit
+def dfs(graph, start, visited):
+    visited.add(start)
+    for neighbor, _ in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+visited = set()
+dfs(flight_graph, 'DEL', visited)
+
+if len(visited) == len(flight_graph):
+    print("The graph is connected.")
+else:
+    print("The graph is NOT connected.")
+🔹 6. Input / Output
+Input:
+Graph: Cities and flight times
+Starting Node: 'DEL'
+
+Output:
+
+arduino
+Copy
+Edit
+The graph is connected.
+Visited Cities:
+DEL, MUM, BLR, HYD, KOL
+
+🔹 7. Conclusion
+The graph successfully models flight connections between cities using weighted edges.
+
+Adjacency list is used, which is suitable because:
+
+It saves space (efficient for sparse graphs).
+
+Easy to add/remove flights dynamically.
+
+Using DFS, we determined that the graph is connected, as all cities are reachable from Delhi.
+
+✅ Justification of Storage Representation:
+Adjacency List is used because:
+
+The number of direct flights is much less than the total possible connections (n(n-1)).
+
+Storing flight data like time or fuel as weights is easier with lists.
+
+More scalable for large graphs.

@@ -1,0 +1,83 @@
+Hash Table Implementation for Telephone Book with Collision Handling Techniques
+1. Introduction & Problem Statement
+In this practical task, we are required to design a system to store and efficiently retrieve the telephone numbers of N clients using a hash table. The hash table should support operations similar to those in a dictionary Abstract Data Type (ADT) such as insertion, deletion, and lookup. Furthermore, we must implement two collision resolution techniques: chaining and open addressing (with and without replacement) and compare their efficiency based on the number of comparisons required during lookup operations.
+
+The problem highlights two important aspects of data structure design:
+
+Efficient data retrieval using hashing.
+
+Proper handling of collisions that occur due to hash function limitations.
+
+2. Theory
+2.1 Hashing and Hash Functions
+Hashing is a technique used to convert a given key into an index in a table. A hash function is used to map the input key (e.g., a client’s name or ID) to a particular index in a hash table.
+
+Example hash function:
+
+plaintext
+Copy
+Edit
+h(key) = key % size_of_table
+A good hash function distributes the keys uniformly across the table to minimize collisions.
+
+2.2 Collisions in Hashing
+A collision occurs when two different keys produce the same hash value. Handling collisions is essential for maintaining performance and data integrity. There are several techniques to handle collisions:
+
+Chaining: Each cell of the hash table points to a linked list. All keys with the same hash value are stored in the list.
+
+Open Addressing: When a collision occurs, the algorithm searches for the next available slot. It includes:
+
+Linear Probing
+
+Quadratic Probing
+
+Double Hashing
+
+With/Without Replacement: A strategy in open addressing. If the slot is occupied by an element not in its home location, replacement might occur.
+
+3. Algorithm (Simplified)
+Chaining:
+Insert: Compute h(key), add (key, value) to the linked list at that index.
+
+Search: Traverse the list at h(key) and compare keys.
+
+Delete: Find and remove the (key, value) pair from the list.
+
+Open Addressing (With Replacement):
+Insert: Compute h(key). If slot is occupied:
+
+If it's not in its home index, replace and re-insert displaced element.
+
+Else, linearly probe next slot.
+
+Search: Probe from h(key) until key is found or an empty slot.
+
+Delete: Locate and mark the key as deleted.
+
+4. Input/Output
+Sample Input:
+Let the hash table size be 7.
+
+Clients:
+[(105, "Alice"), (112, "Bob"), (143, "Charlie"), (199, "David"), (210, "Eve")]
+Hash Function: h(key) = key % 7
+
+Chaining Hash Table:
+Index	Data
+0	[(210, "Eve")]
+1	[(105, "Alice"), (112, "Bob")]
+3	[(143, "Charlie"), (199, "David")]
+
+To search for Bob:
+
+h(112) = 0 → Traverse list → Compare with Alice → Then Bob → 2 comparisons
+
+Open Addressing with Replacement:
+Index	Data
+0	112
+1	210
+3	143
+4	199
+6	105
+
+Search for 105 may take up to 6 comparisons due to probing.

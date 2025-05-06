@@ -1,0 +1,86 @@
+Optimal Binary Search Tree (OBST)
+🔹 1. Title:
+Building an Optimal Binary Search Tree (OBST) for Minimum Search Cost
+
+🔹 2. Objectives:
+To construct a Binary Search Tree (BST) that minimizes the expected cost of search operations.
+
+To use dynamic programming to compute the cost and structure of the optimal BST.
+
+To understand how search probabilities influence tree structure.
+
+🔹 3. Theory
+📘 Binary Search Tree (BST):
+A Binary Search Tree (BST) is a binary tree where for each node:
+
+The left child is smaller than the node.
+
+The right child is greater than the node.
+
+The search cost depends on the depth of the node in the tree.
+
+📘 Problem Statement:
+Given a sorted list of keys:
+
+nginx
+Copy
+Edit
+k1 < k2 < k3 < ... < kn
+Each key ki has a search probability pi. The goal is to arrange these keys in a BST such that the total expected search cost is minimized. The expected search cost is the weighted sum of the search depth of each key.
+
+📘 Dynamic Programming Approach:
+To minimize the total search cost, we can use dynamic programming to build the optimal BST.
+
+Let cost[i][j] represent the minimum cost of a binary search tree that contains keys from ki to kj.
+
+Let sum_p[i][j] represent the sum of probabilities from pi to pj.
+
+The key idea is to calculate the minimum cost by considering all possible roots for the tree. The recurrence relation is:
+
+pgsql
+Copy
+Edit
+cost[i][j] = min over r (cost[i][r-1] + cost[r+1][j] + sum_p[i][j])
+Where r is the root of the tree, and the cost is calculated recursively for the left and right subtrees.
+
+🔹 4. Example Problem
+Let's assume there are 4 sorted keys and their corresponding search probabilities:
+
+Key	Probability
+A	0.1
+B	0.2
+C	0.4
+D	0.3
+
+We aim to construct a BST that minimizes the total search cost by choosing the optimal root at each step.
+
+🔹 5. Dynamic Programming Algorithm
+Initialization:
+Start with the cost for each key by itself. For a single key, the cost is just its probability.
+
+Recursion:
+For every range of keys (ki to kj), compute the minimum cost by trying each key as the root and recursively calculating the cost of left and right subtrees. The optimal root minimizes the total cost for that range.
+
+Result:
+The value at cost[0][n-1] gives the minimum cost of the entire tree.
+
+Reconstruction:
+After calculating the minimum cost, you can also reconstruct the optimal BST using the information stored in the root matrix (which stores the index of the optimal root for each subproblem).
+
+🔹 6. Conclusion
+The Optimal Binary Search Tree (OBST) construction uses dynamic programming to compute the minimum expected search cost.
+
+The key concept is to minimize the weighted depth of each key by selecting optimal roots for subtrees.
+
+The algorithm is efficient and guarantees the minimum search cost for a given set of keys and their probabilities.
+
+🔹 7. Justification of Data Structures
+Data Structure	Purpose
+2D Arrays (cost, root)	Store the minimum cost and the root of subtrees.
+Prefix Sum Array (sum_p)	Calculate the sum of probabilities for ranges efficiently.
+Tree Structure	Represent the actual Optimal BST after the DP process.
+
+2D arrays are used for storing intermediate results, ensuring efficient computation of the minimum cost.
+
+Prefix sums allow fast computation of the sum of probabilities for a given range of keys, which is essential for calculating the cost of subtrees.
+

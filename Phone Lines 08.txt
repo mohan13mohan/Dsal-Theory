@@ -1,0 +1,134 @@
+Minimum Cost Phone Line Connection (MST)
+🔹 1. Title:
+Connecting Business Offices with Minimum Cost Using Minimum Spanning Tree (MST)
+
+🔹 2. Objectives:
+To model a network of business offices as a weighted undirected graph.
+
+To connect all offices using phone lines such that the total connection cost is minimized.
+
+To implement Minimum Spanning Tree (MST) algorithms:
+
+Prim’s Algorithm or
+
+Kruskal’s Algorithm
+
+To choose and use appropriate data structures like graphs, priority queues, and disjoint sets.
+
+🔹 3. Theory / Background
+🧠 Problem Summary:
+You want to connect n offices using a set of phone lines. Each pair of offices can be connected with a cost. Your goal is to ensure all offices are connected directly or indirectly with the minimum total cost.
+
+📘 This is a classic Minimum Spanning Tree (MST) problem:
+A Spanning Tree connects all vertices with the minimum number of edges (n - 1).
+
+A Minimum Spanning Tree is a spanning tree where the sum of edge weights (costs) is minimized.
+
+✅ Suitable Algorithms:
+Kruskal’s Algorithm (uses edge list + Disjoint Set)
+
+Prim’s Algorithm (uses adjacency list + priority queue)
+
+🔹 4. Assumptions / Sample Data
+Let’s say you have 5 offices:
+A, B, C, D, E
+
+The phone line costs between offices are:
+
+Office 1	Office 2	Cost
+A	B	10
+A	C	20
+B	C	5
+B	D	15
+C	D	10
+C	E	30
+D	E	20
+
+🔹 5. Graph Representation (Adjacency List)
+We model this as a weighted undirected graph:
+
+python
+Copy
+Edit
+graph = {
+    'A': [('B', 10), ('C', 20)],
+    'B': [('A', 10), ('C', 5), ('D', 15)],
+    'C': [('A', 20), ('B', 5), ('D', 10), ('E', 30)],
+    'D': [('B', 15), ('C', 10), ('E', 20)],
+    'E': [('C', 30), ('D', 20)]
+}
+🔹 6. Algorithm: Kruskal's MST
+✅ Data Structures Used:
+Edge list (sorted by weight)
+
+Disjoint Set Union (DSU) to detect cycles
+
+python
+Copy
+Edit
+class DisjointSet:
+    def __init__(self, vertices):
+        self.parent = {v: v for v in vertices}
+    
+    def find(self, v):
+        if self.parent[v] != v:
+            self.parent[v] = self.find(self.parent[v])
+        return self.parent[v]
+    
+    def union(self, u, v):
+        root_u = self.find(u)
+        root_v = self.find(v)
+        if root_u != root_v:
+            self.parent[root_v] = root_u
+            return True
+        return False
+
+# List of edges (u, v, weight)
+edges = [
+    ('A', 'B', 10), ('A', 'C', 20), ('B', 'C', 5),
+    ('B', 'D', 15), ('C', 'D', 10), ('C', 'E', 30), ('D', 'E', 20)
+]
+
+# Sort edges by weight
+edges.sort(key=lambda x: x[2])
+
+# Kruskal's algorithm
+dsu = DisjointSet(['A', 'B', 'C', 'D', 'E'])
+mst_cost = 0
+mst_edges = []
+
+for u, v, cost in edges:
+    if dsu.union(u, v):
+        mst_edges.append((u, v, cost))
+        mst_cost += cost
+
+print("Minimum Spanning Tree Edges:")
+for u, v, cost in mst_edges:
+    print(f"{u} - {v} : {cost}")
+print(f"Total Minimum Cost: {mst_cost}")
+🔹 7. Input / Output
+Input: Edge list with weights (costs between offices)
+
+Output:
+
+mathematica
+Copy
+Edit
+Minimum Spanning Tree Edges:
+B - C : 5
+A - B : 10
+C - D : 10
+D - E : 20
+Total Minimum Cost: 45
+🔹 8. Conclusion
+The MST connects all offices with minimum cost of ₹45 (units can be time, cost, or distance).
+
+Kruskal’s Algorithm and Disjoint Set Union provide an optimal and efficient solution.
+
+The graph structure accurately models real-world office connection scenarios.
+
+🔹 9. Justification of Data Structures
+Data Structure	Why It Was Used?
+Graph (Adjacency List)	Efficient for representing sparse connection networks.
+Edge List	Kruskal’s algorithm operates on sorted edges.
+Disjoint Set (Union-Find)	Helps to avoid cycles an

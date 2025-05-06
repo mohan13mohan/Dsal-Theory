@@ -1,0 +1,142 @@
+ Expression Tree Construction and Operations – DSAL Practical
+✅ 1. Objectives
+The objectives of this practical are:
+
+To construct an Expression Tree from a given prefix expression.
+
+To implement a non-recursive post-order traversal of the expression tree.
+
+To perform deletion of the entire tree after traversal.
+
+The expression tree is a binary tree where internal nodes represent operators and leaf nodes represent operands (constants or variables). The challenge here is to construct this tree from a prefix expression and then perform the required operations.
+
+📚 2. Theory
+🔸 What is an Expression Tree?
+An Expression Tree is a binary tree used to represent arithmetic expressions. In such trees:
+
+Leaf nodes contain operands (e.g., numbers or variables).
+
+Internal nodes contain operators (e.g., +, -, *, /).
+
+🔸 Prefix Expression
+A prefix expression (or Polish notation) is a type of mathematical notation where the operator precedes the operands. For example:
+
+plaintext
+Copy
+Edit
++--a*bc/def
+This expression represents:
+
+plaintext
+Copy
+Edit
+((a - (b * c)) + (d / e * f))
+🔸 Steps to Construct the Expression Tree
+Start reading the prefix expression from right to left.
+
+For each operator, pop two operands from the stack, create a new tree node with this operator, and attach the operands as its children.
+
+For each operand, create a leaf node and push it onto the stack.
+
+The final tree on the stack will be the root of the expression tree.
+
+🔸 Post-order Traversal (Non-Recursive)
+In post-order traversal:
+
+First, traverse the left subtree.
+
+Then, traverse the right subtree.
+
+Finally, visit the root node.
+
+To implement post-order traversal non-recursively, we can use a stack. We need to traverse the left and right subtrees, then process the current node. By using two stacks or a single stack with markers, we can achieve a non-recursive traversal.
+
+🧮 3. Algorithm
+📌 A. Expression Tree Construction
+Input: Prefix expression.
+
+Output: Expression Tree.
+
+Steps:
+Initialize an empty stack.
+
+Read the prefix expression from right to left.
+
+For each symbol:
+
+If it's an operand (e.g., variable, constant), create a tree node and push it to the stack.
+
+If it's an operator (e.g., +, -), pop two operands from the stack, create a new node with the operator, and push this new node back onto the stack.
+
+At the end of the traversal, the stack will contain one element, which is the root of the expression tree.
+
+📌 B. Non-recursive Post-order Traversal
+Initialize two stacks:
+
+One for traversal (stack1).
+
+Another for the final post-order result (stack2).
+
+Push the root node onto stack1.
+
+While stack1 is not empty:
+
+Pop a node from stack1 and push it to stack2.
+
+Push its left and right children onto stack1 (if they exist).
+
+Once the traversal is complete, pop all nodes from stack2 to get the post-order result.
+
+📌 C. Delete the Tree
+To delete the tree, perform a post-order traversal and free the memory allocated for each node.
+
+🔢 4. Input / Output
+📥 Sample Input:
+Prefix Expression: +--a*bc/def
+
+📤 Output:
+Expression Tree:
+The tree for the expression +--a*bc/def looks like:
+
+markdown
+Copy
+Edit
+          +
+         / \
+        -   *
+       / \ / \
+      a  * b  /
+         / \  / \
+        c   d e   f
+Post-order Traversal (Non-Recursive):
+css
+Copy
+Edit
+a c b * - d e f / * + 
+Deletion Process:
+After traversing and printing the tree, we delete the tree nodes one by one, starting from the leaf nodes (post-order deletion).
+
+✅ 5. Conclusion
+In this practical, we have:
+
+Successfully constructed an expression tree from a given prefix expression.
+
+Implemented a non-recursive post-order traversal, allowing us to visit the tree's nodes in the correct order.
+
+Demonstrated the deletion of the tree after performing the traversal.
+
+Time Complexity:
+Tree Construction: O(n), where n is the number of operands and operators in the expression.
+
+Post-order Traversal: O(n) as each node is processed exactly once.
+
+Tree Deletion: O(n) as each node must be freed.
+
+Space Complexity:
+Expression Tree Construction: O(n), for storing the tree nodes.
+
+Post-order Traversal: O(n), for the stack used in the traversal.
+
+Tree Deletion: O(1) additional space (ignoring recursion stack for post-order traversal).
+
+This exercise is crucial in understanding expression evaluation and tree manipulation techniques, which are widely used in compilers and mathematical expression parsers.

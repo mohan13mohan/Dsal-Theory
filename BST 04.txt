@@ -1,0 +1,152 @@
+ Binary Search Tree Operations – DSAL Practical
+ 
+ 
+ 1. Objectives
+The main objectives of this practical are:
+
+To understand and construct a Binary Search Tree (BST) from a given set of values.
+
+To implement various standard operations on BST:
+
+Insertion of a new node.
+
+Finding the height (longest path from root).
+
+Finding the minimum value in the BST.
+
+Creating the mirror of the tree by swapping left and right pointers.
+
+Searching for a specific value in the tree.
+
+📚 2. Theory
+🔸 What is a Binary Search Tree?
+A Binary Search Tree is a special type of binary tree where:
+
+The left child of a node contains values less than the node’s value.
+
+The right child contains values greater than the node’s value.
+
+There are no duplicate values.
+
+BST allows efficient insertion, deletion, and search operations — typically in O(log n) time for balanced trees.
+
+🔸 BST Properties
+Search Time: O(log n) in best/average case; O(n) in worst case (unbalanced).
+
+Insertion: Follows the same rule as search; insert to left/right subtree.
+
+Traversal: Common traversals include Inorder (LNR), Preorder (NLR), Postorder (LRN).
+
+🔸 BST Applications
+Searching in sorted data
+
+Implementing maps and sets
+
+Auto-complete systems
+
+Priority systems (like heaps and priority queues)
+
+🧮 3. Algorithm
+📌 A. Insert into BST
+plaintext
+Copy
+Edit
+1. Start at root.
+2. If key < current node → go to left subtree.
+3. If key > current node → go to right subtree.
+4. If null, insert node here.
+📌 B. Longest Path (Height of Tree)
+plaintext
+Copy
+Edit
+1. Recursively find height of left and right subtrees.
+2. Height = max(left, right) + 1
+📌 C. Find Minimum Value
+plaintext
+Copy
+Edit
+1. Move to the leftmost node from root.
+2. That node contains the minimum value.
+📌 D. Mirror the Tree
+plaintext
+Copy
+Edit
+1. Recursively swap left and right child pointers of each node.
+📌 E. Search a Value
+plaintext
+Copy
+Edit
+1. If root is null → not found.
+2. If key = root.data → found.
+3. If key < root → search left subtree.
+4. If key > root → search right subtree.
+🔢 4. Input / Output
+📥 Sample Input:
+Construct BST using this order:
+
+plaintext
+Copy
+Edit
+50, 30, 70, 20, 40, 60, 80
+📤 BST Structure (Inorder Traversal):
+Copy
+Edit
+20 30 40 50 60 70 80
+🌳 BST Diagram:
+markdown
+Copy
+Edit
+         50
+       /    \
+     30      70
+    /  \    /  \
+  20   40  60  80
+📌 Outputs for Each Operation:
+Insert(65)
+
+Inserted under node 70, to the left of 80.
+
+Longest Path from Root
+
+Path: 50 → 70 → 80 → 65
+
+Number of nodes = 4
+
+Minimum Value
+
+Leftmost node = 20
+
+Mirror the Tree
+
+Swap left/right at each node. New structure:
+
+markdown
+Copy
+Edit
+         50
+       /    \
+     70      30
+    /  \    /  \
+  80   60  40  20
+        \
+        65
+Inorder traversal of mirrored tree:
+80 70 65 60 50 40 30 20
+
+Search(40)
+
+Found at level 2 (after checking root → left → right)
+
+✅ 5. Conclusion
+This practical demonstrates the implementation of a Binary Search Tree and standard operations such as insertion, search, finding the minimum, mirroring, and determining height. Key takeaways:
+
+BST provides efficient data storage and retrieval.
+
+Recursive functions simplify tree operations.
+
+Mirroring a tree involves a simple yet powerful pointer-swap at each node.
+
+Finding minimum or searching values utilizes the ordered nature of BST.
+
+BSTs are foundational structures in computer science, useful in databases, compilers, and dynamic data processing.
+

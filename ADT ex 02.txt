@@ -1,0 +1,190 @@
+ Telephone Book Using Hashing – DSAL Practical
+✅ 1. Objectives
+The objective of this practical is to:
+
+Implement a telephone book using the Dictionary Abstract Data Type (ADT).
+
+Use hashing for efficient insertion, deletion, and lookup of client telephone numbers.
+
+Handle collisions using:
+
+Chaining
+
+Open addressing (with and without replacement)
+
+Compare both collision handling methods based on the number of comparisons required for lookup.
+
+Perform all standard dictionary operations:
+
+Insert(key, value)
+
+Find(key)
+
+Delete(key)
+
+📚 2. Theory
+In many applications like telephone directories or databases, fast access to data is essential. A dictionary ADT allows for quick insertion, searching, and deletion using keys. In our case:
+
+Key: Unique client ID or name.
+
+Value: Telephone number.
+
+To implement this efficiently, we use a hash table, which is a data structure that maps keys to indices using a hash function.
+
+🔷 Hash Function
+A hash function transforms a key into an index in an array:
+
+vbnet
+Copy
+Edit
+hash(key) = key % table_size
+A good hash function minimizes collisions by distributing keys uniformly.
+
+🔷 Collisions
+A collision occurs when two keys hash to the same index. Since collisions are inevitable, we must handle them using collision resolution techniques.
+
+🔸 2.1 Chaining
+Each cell in the hash table contains a linked list.
+
+Multiple key-value pairs that hash to the same index are stored in the list.
+
+Searching involves traversing the list at a given index.
+
+Pros:
+
+Easy to implement.
+
+Performs well even when the table load factor is high.
+
+Cons:
+
+Extra memory required for linked lists.
+
+🔸 2.2 Open Addressing (With/Without Replacement)
+In this method, all elements are stored in the main array. On a collision, the algorithm searches for another available slot (called probing).
+
+Without Replacement: Simply finds the next available slot.
+
+With Replacement: If the current element is not in its correct position, it is swapped out, and the new key is placed in its hashed location.
+
+Pros:
+
+No extra memory for lists.
+
+Simple storage structure.
+
+Cons:
+
+Performance drops with higher load factors.
+
+Deletion is complex and may require special markers.
+
+📊 3. Algorithm
+Below are the simplified steps for dictionary operations using both techniques:
+
+📌 A. Chaining
+Insert(key, value):
+
+Compute index = hash(key)
+
+If key exists in linked list → update value.
+
+Else → insert at head of linked list.
+
+Find(key):
+
+Compute index = hash(key)
+
+Traverse the list and compare keys.
+
+If found → return value; else → return null.
+
+Delete(key):
+
+Compute index = hash(key)
+
+Traverse list to find key.
+
+If found → remove from list.
+
+📌 B. Open Addressing (With Replacement)
+Insert(key, value):
+
+Compute index = hash(key)
+
+If empty → insert.
+
+If occupied by a key from another index → replace and reinsert displaced key.
+
+Else → probe next slot.
+
+Find(key):
+
+Start at hash(key).
+
+If match → return value.
+
+Else → keep probing.
+
+Delete(key):
+
+Find key via probing.
+
+Mark it as deleted (using a placeholder).
+
+🔢 4. Input/Output
+📥 Input:
+A list of clients with their telephone numbers.
+
+Keys are unique identifiers (e.g., IDs).
+
+Example Dataset:
+
+plaintext
+Copy
+Edit
+(101, "Alice")
+(108, "Bob")
+(115, "Charlie")
+(122, "David")
+(129, "Eve")
+Assume hash(key) = key % 7 and table size = 7.
+
+📤 Output (Chaining Example):
+Index	Data
+2	(108, Bob), (122, David)
+3	(129, Eve)
+3	(115, Charlie)
+3	(101, Alice)
+
+🔍 Search Comparison:
+Searching for Bob → index 2 → compare with 108 → found → 1 comparison
+
+Searching for David → index 2 → compare with 108, then 122 → 2 comparisons
+
+📤 Output (Open Addressing Example):
+Index	Data
+3	(101, Alice)
+2	(108, Bob)
+3	(115, Charlie) → next free = 4
+5	(122, David)
+6	(129, Eve)
+
+Searching for Charlie: index 3 → no match → probe 4 → match → 2 comparisons
+
+✅ 5. Conclusion
+This experiment demonstrates how hashing provides efficient access for dictionary operations. The use of a hash table for a telephone book ensures quick lookup, insertion, and deletion of client records.
+
+Chaining is simple and works well with high load factors.
+
+Open addressing with replacement is more memory-efficient but becomes slower when the table is nearly full.
+
+The number of comparisons required during lookup helps compare their performance.
+
+Overall, chaining is preferred when memory is available and dataset size can grow, while open addressing suits space-constrained situations with a known number of entries.
+
+Let me know if you want this formatted as a Word or PDF file, or if you’d like the code included as well.
+
+
+
+
